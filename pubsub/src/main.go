@@ -2,15 +2,16 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/service/gamelift"
-	"github.com/go-redis/redis"
 	"io/ioutil"
 	"log"
 	"main/configmap"
 	"os"
 	"time"
+
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/gamelift"
+	"github.com/go-redis/redis"
 )
 
 const port = "6379"
@@ -53,6 +54,7 @@ func publish(g Groups) {
 
 	for {
 		for _, gs := range g.GameServerGroups {
+			gs := gs
 			params := &gamelift.DescribeGameServerInstancesInput{
 				GameServerGroupName: &gs,
 			}
